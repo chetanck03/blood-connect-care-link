@@ -7,12 +7,19 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ArrowLeft, HeartPulse, Gift } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface DonorRegistrationProps {
   onBack: () => void;
 }
 
 const DonorRegistration = ({ onBack }: DonorRegistrationProps) => {
+  const navigate = useNavigate();
+  
+  const handleBack = () => {
+    navigate('/');
+  };
+  
   const [formData, setFormData] = useState({
     name: '',
     place: '',
@@ -50,7 +57,7 @@ const DonorRegistration = ({ onBack }: DonorRegistrationProps) => {
       <div className="max-w-2xl mx-auto">
         <div className="flex items-center mb-6 animate-fade-in">
           <Button
-            onClick={onBack}
+            onClick={handleBack}
             variant="ghost"
             className="text-white hover:bg-slate-800 mr-4"
           >

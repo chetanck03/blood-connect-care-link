@@ -4,6 +4,7 @@ import { UserButton, useUser } from '@clerk/clerk-react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowLeft, User, Heart, Award, Clock, Phone } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface UserProfileProps {
   onBack: () => void;
@@ -11,6 +12,11 @@ interface UserProfileProps {
 
 const UserProfile = ({ onBack }: UserProfileProps) => {
   const { user } = useUser();
+  const navigate = useNavigate();
+  
+  const handleBack = () => {
+    navigate('/');
+  };
   
   const stats = [
     { label: "Donations Made", value: "5", icon: Heart, color: "text-medical-red" },
@@ -32,7 +38,7 @@ const UserProfile = ({ onBack }: UserProfileProps) => {
         <div className="flex items-center justify-between mb-8 animate-fade-in">
           <div className="flex items-center">
             <Button
-              onClick={onBack}
+              onClick={handleBack}
               variant="ghost"
               className="text-white hover:bg-slate-800 mr-4"
             >

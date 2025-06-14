@@ -1,73 +1,127 @@
-# Welcome to your Lovable project
+# B-Donor: Blood Donation Management System
 
-## Project info
+## Overview
 
-**URL**: https://lovable.dev/projects/1c915b05-4531-4a76-85b2-cf385ab343b4
+B-Donor is a comprehensive blood donation management system designed to connect blood donors with patients in need. The platform facilitates the registration of both donors and patients, provides information about nearby hospitals and blood banks, and offers a user-friendly interface for managing blood donation activities.
 
-## How can I edit this code?
+## Features
 
-There are several ways of editing your application.
+### User Authentication
+- Secure authentication using Clerk
+- Protected routes for authenticated users
+- User profile management
 
-**Use Lovable**
+### Donor Management
+- Donor registration with health information collection
+- Blood type tracking
+- Donation history
+- Reward system for donors
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/1c915b05-4531-4a76-85b2-cf385ab343b4) and start prompting.
+### Patient Registration
+- Patient registration with medical details
+- Blood type requirement specification
+- Payment integration for registration fees
 
-Changes made via Lovable will be committed automatically to this repo.
+### Hospital & Blood Bank Locator
+- Interactive Google Maps integration
+- List of nearby hospitals and blood banks
+- Contact information for medical facilities
 
-**Use your preferred IDE**
+### User Dashboard
+- Personal statistics (donations made, lives saved)
+- Recent activity tracking
+- Profile management
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Support & Contact
+- Emergency contact information
+- Support channels
+- Social media links
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## Technologies Used
 
-Follow these steps:
+- **Frontend**: React, TypeScript, Tailwind CSS
+- **UI Components**: Shadcn/ui
+- **Authentication**: Clerk
+- **Routing**: React Router
+- **State Management**: React Query
+- **Maps Integration**: Google Maps Embed API
+- **Build Tool**: Vite
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## Getting Started
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### Prerequisites
 
-# Step 3: Install the necessary dependencies.
-npm i
+- Node.js (v16 or higher)
+- npm or yarn
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+### Installation
+
+1. Clone the repository
+   ```bash
+   git clone https://github.com/yourusername/blood-connect-care-link.git
+   cd blood-connect-care-link
+   ```
+
+2. Install dependencies
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+3. Set up environment variables
+   - Create a `.env` file in the root directory
+   - Add your Clerk publishable key:
+     ```
+     VITE_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+     ```
+
+4. Start the development server
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+5. Open your browser and navigate to `http://localhost:5173`
+
+## Project Structure
+
+```
+├── src/
+│   ├── components/       # UI components
+│   │   ├── ui/           # Shadcn UI components
+│   │   └── ...           # Custom components
+│   ├── pages/            # Page components
+│   ├── hooks/            # Custom React hooks
+│   ├── lib/              # Utility functions
+│   ├── App.tsx           # Main application component
+│   └── main.tsx          # Application entry point
+├── public/               # Static assets
+└── ...                   # Configuration files
 ```
 
-**Edit a file directly in GitHub**
+## Authentication Flow
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+The application uses Clerk for authentication with the following flow:
 
-**Use GitHub Codespaces**
+1. Users can sign up or sign in through the authentication page
+2. Upon successful authentication, users are redirected to the home page
+3. Protected routes require authentication to access
+4. The application displays a loading screen while checking authentication status
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Contributing
 
-## What technologies are used for this project?
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-This project is built with:
+## License
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-## How can I deploy this project?
+## Contact
 
-Simply open [Lovable](https://lovable.dev/projects/1c915b05-4531-4a76-85b2-cf385ab343b4) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+For any inquiries or support, please contact us at support@bdonor.com

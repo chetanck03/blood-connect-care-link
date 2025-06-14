@@ -1,7 +1,11 @@
 
+import { getDayOfYear } from "date-fns";
 import { Heart, Phone, Mail, MapPin, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
 
 const Footer = () => {
+
+  const year = new Date().getFullYear();
+  
   const socialLinks = [
     { icon: Facebook, href: "#", label: "Facebook" },
     { icon: Twitter, href: "#", label: "Twitter" },
@@ -96,7 +100,7 @@ const Footer = () => {
         {/* Bottom Section */}
         <div className="border-t border-slate-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-slate-400 text-sm">
-            © 2024 B-Donor Healthcare Solutions. All rights reserved.
+            © {year} B-Donor Healthcare Solutions. All rights reserved.
           </p>
           <p className="text-slate-400 text-sm mt-2 md:mt-0">
             Made with <Heart className="inline h-4 w-4 text-medical-red" /> for humanity

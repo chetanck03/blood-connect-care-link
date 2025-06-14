@@ -7,12 +7,19 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ArrowLeft, Heart, CreditCard } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface PatientRegistrationProps {
   onBack: () => void;
 }
 
 const PatientRegistration = ({ onBack }: PatientRegistrationProps) => {
+  const navigate = useNavigate();
+  
+  const handleBack = () => {
+    navigate('/');
+  };
+  
   const [formData, setFormData] = useState({
     name: '',
     place: '',
@@ -51,7 +58,7 @@ const PatientRegistration = ({ onBack }: PatientRegistrationProps) => {
       <div className="max-w-2xl mx-auto">
         <div className="flex items-center mb-6 animate-fade-in">
           <Button
-            onClick={onBack}
+            onClick={handleBack}
             variant="ghost"
             className="text-white hover:bg-slate-800 mr-4"
           >

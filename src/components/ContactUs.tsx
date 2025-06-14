@@ -1,12 +1,19 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowLeft, Phone, Mail, MapPin } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface ContactUsProps {
   onBack: () => void;
 }
 
 const ContactUs = ({ onBack }: ContactUsProps) => {
+  const navigate = useNavigate();
+  
+  const handleBack = () => {
+    navigate('/');
+  };
+  
   const contactInfo = [
     { type: "Emergency", number: "+91 9876543210", icon: Phone, color: "text-medical-red" },
     { type: "Support", number: "+91 9876543211", icon: Phone, color: "text-medical-blue" },
@@ -25,7 +32,7 @@ const ContactUs = ({ onBack }: ContactUsProps) => {
       <div className="max-w-2xl mx-auto">
         <div className="flex items-center mb-6 animate-fade-in">
           <Button
-            onClick={onBack}
+            onClick={handleBack}
             variant="ghost"
             className="text-white hover:bg-slate-800 mr-4"
           >

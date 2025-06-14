@@ -2,7 +2,8 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Heart, Users, MapPin, Phone, Clipboard, HeartPulse, User } from "lucide-react";
-import { UserButton } from '@clerk/clerk-react';
+import { UserButton, useUser } from '@clerk/clerk-react';
+import { useNavigate } from 'react-router-dom';
 import Footer from "./Footer";
 
 interface HomeProps {
@@ -10,6 +11,8 @@ interface HomeProps {
 }
 
 const Home = ({ onNavigate }: HomeProps) => {
+  const navigate = useNavigate();
+  const { user } = useUser();
   const healthQuotes = [
     "Health is not about the weight you lose, but about the life you gain.",
     "Your body can stand almost anything. It's your mind you have to convince.",
@@ -41,21 +44,21 @@ const Home = ({ onNavigate }: HomeProps) => {
           </div>
           <div className="flex items-center space-x-4">
             <Button
-              onClick={() => onNavigate('profile')}
-              variant="ghost"
-              className="text-white hover:bg-slate-800"
-            >
-              <User className="h-5 w-5 mr-2" />
-              Profile
-            </Button>
-            <UserButton 
-              afterSignOutUrl="/"
-              appearance={{
-                elements: {
-                  avatarBox: "w-10 h-10"
-                }
-              }}
-            />
+            onClick={() => navigate('/profile')}
+            variant="ghost"
+            className="text-white hover:bg-slate-800"
+          >
+            <User className="h-5 w-5 mr-2" />
+            Profile
+          </Button>
+          <UserButton 
+            afterSignOutUrl="/"
+            appearance={{
+              elements: {
+                avatarBox: "w-10 h-10"
+              }
+            }}
+          />
           </div>
         </div>
 
@@ -69,7 +72,7 @@ const Home = ({ onNavigate }: HomeProps) => {
         {/* Main Navigation */}
         <div className="grid grid-cols-2 gap-4 mb-8">
           <Button
-            onClick={() => onNavigate('patient-registration')}
+            onClick={() => navigate('/patient-registration')}
             className="h-24 bg-medical-red hover:bg-medical-red-dark transition-all duration-300 hover:glow-red hover:scale-105"
           >
             <div className="text-center">
@@ -79,7 +82,7 @@ const Home = ({ onNavigate }: HomeProps) => {
           </Button>
           
           <Button
-            onClick={() => onNavigate('donor-registration')}
+            onClick={() => navigate('/donor-registration')}
             className="h-24 bg-medical-blue hover:bg-medical-blue/80 transition-all duration-300 hover:glow-blue hover:scale-105"
           >
             <div className="text-center">
@@ -89,7 +92,7 @@ const Home = ({ onNavigate }: HomeProps) => {
           </Button>
           
           <Button
-            onClick={() => onNavigate('maps')}
+            onClick={() => navigate('/maps')}
             className="h-24 bg-medical-green hover:bg-medical-green/80 transition-all duration-300 hover:scale-105"
           >
             <div className="text-center">

@@ -1,9 +1,10 @@
-import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from '@clerk/clerk-react';
+import { SignedIn, SignedOut,SignInButton, SignUpButton, useSignIn, useSignUp } from '@clerk/clerk-react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Heart, Shield, Users, Award, Clock, MapPin } from "lucide-react";
-import { useEffect } from 'react';
+import { Heart, Shield, Users, Award, Clock, MapPin, AlertCircle } from "lucide-react";
+import { useEffect, useState } from 'react';
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 interface ClerkAuthProps {
   onLogin: () => void;
@@ -43,8 +44,13 @@ const ClerkAuth = ({ onLogin }: ClerkAuthProps) => {
     }
   ];
 
+  const { isLoaded: isSignInLoaded, signIn, setActive: setSignInActive } = useSignIn();
+  const { isLoaded: isSignUpLoaded, signUp, setActive: setSignUpActive } = useSignUp();
+  const [authError, setAuthError] = useState<string | null>(null);
+  
   useEffect(() => {
-    // This will be called when the component mounts and user is signed in
+    // Clear any auth errors when the component mounts
+    setAuthError(null);
   }, []);
 
   return (
@@ -80,9 +86,24 @@ const ClerkAuth = ({ onLogin }: ClerkAuthProps) => {
                     <TabsTrigger value="signup" className="data-[state=active]:bg-medical-blue">Sign Up</TabsTrigger>
                   </TabsList>
                   
+                  {authError && (
+                    <Alert variant="destructive" className="mb-4 bg-medical-red/20 border-medical-red">
+                      <AlertCircle className="h-4 w-4" />
+                      <AlertTitle>Authentication Error</AlertTitle>
+                      <AlertDescription>{authError}</AlertDescription>
+                    </Alert>
+                  )}
+                  
                   <TabsContent value="signin" className="mt-0">
-                    <SignInButton fallbackRedirectUrl="/" forceRedirectUrl="/">
-                      <Button className="w-full bg-medical-red hover:bg-medical-red-dark transition-all duration-300 hover:glow-red text-lg py-3">
+                    <SignInButton 
+                      mode="modal"
+                      afterSignInUrl="/"
+                      redirectUrl="/"
+                    >
+                      <Button 
+                        className="w-full bg-medical-red hover:bg-medical-red-dark transition-all duration-300 hover:glow-red text-lg py-3"
+                        onClick={() => setAuthError(null)}
+                      >
                         <Shield className="mr-2 h-5 w-5" />
                         Sign In to B-Donor
                       </Button>
@@ -90,8 +111,15 @@ const ClerkAuth = ({ onLogin }: ClerkAuthProps) => {
                   </TabsContent>
                   
                   <TabsContent value="signup" className="mt-0">
-                    <SignUpButton fallbackRedirectUrl="/" forceRedirectUrl="/">
-                      <Button className="w-full bg-medical-blue hover:bg-medical-blue/80 transition-all duration-300 hover:glow-blue text-lg py-3">
+                    <SignUpButton 
+                      mode="modal"
+                      afterSignUpUrl="/"
+                      redirectUrl="/"
+                    >
+                      <Button 
+                        className="w-full bg-medical-blue hover:bg-medical-blue/80 transition-all duration-300 hover:glow-blue text-lg py-3"
+                        onClick={() => setAuthError(null)}
+                      >
                         <Heart className="mr-2 h-5 w-5" />
                         Join B-Donor Today
                       </Button>
