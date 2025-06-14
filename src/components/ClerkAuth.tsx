@@ -1,9 +1,9 @@
-
 import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from '@clerk/clerk-react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Heart, Shield, Users, Award, Clock, MapPin } from "lucide-react";
+import { useEffect } from 'react';
 
 interface ClerkAuthProps {
   onLogin: () => void;
@@ -42,6 +42,10 @@ const ClerkAuth = ({ onLogin }: ClerkAuthProps) => {
       description: "Round-the-clock emergency support for critical situations"
     }
   ];
+
+  useEffect(() => {
+    // This will be called when the component mounts and user is signed in
+  }, []);
 
   return (
     <div className="min-h-screen bg-medical-dark">
@@ -138,8 +142,18 @@ const ClerkAuth = ({ onLogin }: ClerkAuthProps) => {
       </SignedOut>
 
       <SignedIn>
-        <div>
-          {onLogin()}
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <Heart className="h-16 w-16 text-medical-red animate-pulse mx-auto mb-4" />
+            <h1 className="text-2xl font-bold text-white mb-4">Welcome to B-Donor!</h1>
+            <p className="text-slate-300 mb-6">You're successfully signed in. Redirecting...</p>
+            <Button 
+              onClick={onLogin}
+              className="bg-medical-blue hover:bg-medical-blue/80"
+            >
+              Continue to Dashboard
+            </Button>
+          </div>
         </div>
       </SignedIn>
     </div>
