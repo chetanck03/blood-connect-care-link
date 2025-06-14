@@ -1,32 +1,18 @@
 
 import { useState } from 'react';
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Heart, Shield, Users, MapPin, MessageCircle, Phone } from "lucide-react";
-import Login from "@/components/Login";
+import { SignedIn, SignedOut } from '@clerk/clerk-react';
+import ClerkAuth from "@/components/ClerkAuth";
 import Home from "@/components/Home";
 import PatientRegistration from "@/components/PatientRegistration";
 import DonorRegistration from "@/components/DonorRegistration";
 import Maps from "@/components/Maps";
 import ContactUs from "@/components/ContactUs";
+import UserProfile from "@/components/UserProfile";
 
 const Index = () => {
-  const [currentPage, setCurrentPage] = useState('login');
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const handleLogin = () => {
-    setIsLoggedIn(true);
-    setCurrentPage('home');
-  };
+  const [currentPage, setCurrentPage] = useState('home');
 
   const renderCurrentPage = () => {
-    if (!isLoggedIn && currentPage === 'login') {
-      return <Login onLogin={handleLogin} />;
-    }
-
     switch (currentPage) {
       case 'home':
         return <Home onNavigate={setCurrentPage} />;
@@ -38,6 +24,8 @@ const Index = () => {
         return <Maps onBack={() => setCurrentPage('home')} />;
       case 'contact':
         return <ContactUs onBack={() => setCurrentPage('home')} />;
+      case 'profile':
+        return <UserProfile onBack={() => setCurrentPage('home')} />;
       default:
         return <Home onNavigate={setCurrentPage} />;
     }
@@ -45,7 +33,13 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-medical-dark">
-      {renderCurrentPage()}
+      <SignedOut>
+        <ClerkAuth onLogin={() => setCurrentPage('home')} />
+      </SignedOut>
+      
+      <SignedIn>
+        {renderCurrentPage()}
+      </SignedIn>
     </div>
   );
 };
