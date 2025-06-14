@@ -1,7 +1,6 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowLeft, Phone, Envelope, MapPin } from "lucide-react";
+import { ArrowLeft, Phone, Mail, MapPin } from "lucide-react";
 
 interface ContactUsProps {
   onBack: () => void;
@@ -77,7 +76,7 @@ const ContactUs = ({ onBack }: ContactUsProps) => {
         <Card className="mb-6 bg-medical-dark-card border-slate-700 animate-slide-in-right">
           <CardHeader>
             <CardTitle className="text-white flex items-center">
-              <Envelope className="mr-2 h-5 w-5 text-medical-blue" />
+              <Mail className="mr-2 h-5 w-5 text-medical-blue" />
               Digital Contact
             </CardTitle>
           </CardHeader>
