@@ -1,5 +1,6 @@
 
 import { useState } from 'react';
+import { Link } from 'react-router-dom'; // Import Link
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -26,7 +27,9 @@ const PatientRegistration = ({ onBack }: PatientRegistrationProps) => {
     age: '',
     bloodGroup: '',
     mobile: '',
-    consent: false
+    consent: false,
+    unitsRequired: '',
+    severityLevel: ''
   });
 
   const [healthIssues, setHealthIssues] = useState({
@@ -148,6 +151,34 @@ const PatientRegistration = ({ onBack }: PatientRegistrationProps) => {
                 </div>
               </div>
 
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="unitsRequired" className="text-white">No. of Units Required</Label>
+                  <Input
+                    id="unitsRequired"
+                    type="number"
+                    value={formData.unitsRequired}
+                    onChange={(e) => setFormData({...formData, unitsRequired: e.target.value})}
+                    className="bg-slate-800 border-slate-600 text-white"
+                    required
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="severityLevel" className="text-white">Severity Level</Label>
+                  <Select onValueChange={(value) => setFormData({...formData, severityLevel: value})}>
+                    <SelectTrigger className="bg-slate-800 border-slate-600 text-white">
+                      <SelectValue placeholder="Select severity" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-slate-800 border-slate-600">
+                      <SelectItem value="low" className="text-white">Low</SelectItem>
+                      <SelectItem value="medium" className="text-white">Medium</SelectItem>
+                      <SelectItem value="high" className="text-white">High</SelectItem>
+                      <SelectItem value="urgent" className="text-white">Urgent</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+
               {/* Health Issues */}
               <div className="space-y-4">
                 <h3 className="text-white font-semibold">Health Conditions</h3>
@@ -176,7 +207,7 @@ const PatientRegistration = ({ onBack }: PatientRegistrationProps) => {
                   required
                 />
                 <Label htmlFor="consent" className="text-white">
-                  I agree to the no blood sale and purchase policy
+                  I agree to the <Link to="/policy" className="underline text-blue-600 hover:text-blue-500">no blood sale and purchase policy</Link>
                 </Label>
               </div>
 

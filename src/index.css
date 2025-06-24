@@ -4,6 +4,7 @@
 @tailwind utilities;
 
 /* Dark Healthcare Theme Colors */
+
 @layer base {
   :root {
     --background: 15 15 35; /* Dark navy */

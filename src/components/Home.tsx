@@ -1,10 +1,10 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Heart, Users, MapPin, Phone, Clipboard, HeartPulse, User } from "lucide-react";
+import { Award,Heart,Users, MapPin, Phone, Clipboard, HeartPulse, User } from "lucide-react";
 import { UserButton, useUser } from '@clerk/clerk-react';
 import { useNavigate } from 'react-router-dom';
 import Footer from "./Footer";
+import logo from '../components/img/logo.png';
 
 interface HomeProps {
   onNavigate: (page: string) => void;
@@ -35,22 +35,45 @@ const Home = ({ onNavigate }: HomeProps) => {
 
   return (
     <div className="min-h-screen bg-medical-dark">
-      <div className="p-4">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-8 animate-fade-in">
+      {/* Header */}
+      <div className="fixed top-0 left-0 right-0 bg-medical-dark p-3 z-50 shadow-md">
+        <div className="flex items-center justify-between animate-fade-in">
           <div className="flex items-center">
-            <Heart className="h-8 w-8 text-medical-red animate-pulse" />
+            <img src={logo} alt="Logo" className="h-12 w-12 rounded-full object-cover" />
             <span className="text-2xl font-bold text-white ml-2">B-Donor</span>
           </div>
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2 md:space-x-4">
             <Button
-            onClick={() => navigate('/profile')}
-            variant="ghost"
-            className="text-white hover:bg-slate-800"
-          >
-            <User className="h-5 w-5 mr-2" />
-            Profile
-          </Button>
+              onClick={() => navigate('/download-certificate')}
+              variant="ghost"
+              className="text-white hover:bg-slate-800 hidden md:flex"
+            >
+              Download Certificate
+            </Button>
+            <Button
+              onClick={() => navigate('/download-certificate')}
+              variant="ghost"
+              className="text-white hover:bg-slate-800 md:hidden p-2"
+              title="Download Certificate"
+            >
+              <Award className="h-5 w-5" />
+            </Button>
+            <Button
+              onClick={() => navigate('/profile')}
+              variant="ghost"
+              className="text-white hover:bg-slate-800 hidden md:flex"
+            >
+              <User className="h-5 w-5 mr-2" />
+              Profile
+            </Button>
+            <Button
+              onClick={() => navigate('/profile')}
+              variant="ghost"
+              className="text-white hover:bg-slate-800 md:hidden p-2"
+              title="Profile"
+            >
+              <User className="h-5 w-5" />
+            </Button>
           <UserButton 
             afterSignOutUrl="/"
             appearance={{
@@ -61,53 +84,56 @@ const Home = ({ onNavigate }: HomeProps) => {
           />
           </div>
         </div>
+      </div>
 
+      {/* Main Content with Padding */}
+      <div className=" p-4 pt-20 "> {/* Add top padding equal to header height */}
         {/* Health Quote */}
-        <Card className="mb-8 bg-gradient-to-r from-medical-red/20 to-medical-blue/20 border-slate-700 animate-fade-in">
-          <CardContent className="p-6 text-center">
-            <p className="text-white text-lg italic">"{healthQuotes[0]}"</p>
+        <Card className="mb-4 md:mb-8 bg-gradient-to-r from-medical-red/20 to-medical-blue/20 border-slate-700 animate-fade-in">
+          <CardContent className="p-4 md:p-6 text-center">
+            <p className="text-white text-sm md:text-lg italic">"{healthQuotes[0]}"</p>
           </CardContent>
         </Card>
 
         {/* Main Navigation */}
-        <div className="grid grid-cols-2 gap-4 mb-8">
+        <div className="grid grid-cols-2 gap-2 md:gap-4 mb-4 md:mb-8">
           <Button
             onClick={() => navigate('/patient-registration')}
-            className="h-24 bg-medical-red hover:bg-medical-red-dark transition-all duration-300 hover:glow-red hover:scale-105"
+            className="h-20 md:h-24 bg-medical-red hover:bg-medical-red-dark transition-all duration-300 hover:glow-red hover:scale-105 p-2 md:p-4"
           >
             <div className="text-center">
-              <Clipboard className="h-8 w-8 mb-2 mx-auto" />
-              <div>Patient Registration</div>
+              <Clipboard className="h-6 w-6 md:h-8 md:w-8 mb-1 md:mb-2 mx-auto" />
+              <div className="text-xs md:text-base">Patient Registration</div>
             </div>
           </Button>
           
           <Button
             onClick={() => navigate('/donor-registration')}
-            className="h-24 bg-medical-blue hover:bg-medical-blue/80 transition-all duration-300 hover:glow-blue hover:scale-105"
+            className="h-20 md:h-24 bg-medical-blue hover:bg-medical-blue/80 transition-all duration-300 hover:glow-blue hover:scale-105 p-2 md:p-4"
           >
             <div className="text-center">
-              <HeartPulse className="h-8 w-8 mb-2 mx-auto" />
-              <div>Donor Registration</div>
+              <HeartPulse className="h-6 w-6 md:h-8 md:w-8 mb-1 md:mb-2 mx-auto" />
+              <div className="text-xs md:text-base">Donor Registration</div>
             </div>
           </Button>
           
           <Button
             onClick={() => navigate('/maps')}
-            className="h-24 bg-medical-green hover:bg-medical-green/80 transition-all duration-300 hover:scale-105"
+            className="h-20 md:h-24 bg-medical-green hover:bg-medical-green/80 transition-all duration-300 hover:scale-105 p-2 md:p-4"
           >
             <div className="text-center">
-              <MapPin className="h-8 w-8 mb-2 mx-auto" />
-              <div>Hospital Maps</div>
+              <MapPin className="h-6 w-6 md:h-8 md:w-8 mb-1 md:mb-2 mx-auto" />
+              <div className="text-xs md:text-base">Hospital Maps</div>
             </div>
           </Button>
           
           <Button
             onClick={() => onNavigate('contact')}
-            className="h-24 bg-slate-700 hover:bg-slate-600 transition-all duration-300 hover:scale-105"
+            className="h-20 md:h-24 bg-slate-700 hover:bg-slate-600 transition-all duration-300 hover:scale-105 p-2 md:p-4"
           >
             <div className="text-center">
-              <Phone className="h-8 w-8 mb-2 mx-auto" />
-              <div>Contact Us</div>
+              <Phone className="h-6 w-6 md:h-8 md:w-8 mb-1 md:mb-2 mx-auto" />
+              <div className="text-xs md:text-base">Contact Us</div>
             </div>
           </Button>
         </div>

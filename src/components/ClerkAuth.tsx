@@ -1,10 +1,11 @@
-import { SignedIn, SignedOut,SignInButton, SignUpButton, useSignIn, useSignUp } from '@clerk/clerk-react';
+import {  SignedIn, SignedOut,SignInButton, SignUpButton, useSignIn, useSignUp } from '@clerk/clerk-react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Heart, Shield, Users, Award, Clock, MapPin, AlertCircle } from "lucide-react";
 import { useEffect, useState } from 'react';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import logo from '../components/img/logo.png';
 
 interface ClerkAuthProps {
   onLogin: () => void;
@@ -61,7 +62,7 @@ const ClerkAuth = ({ onLogin }: ClerkAuthProps) => {
             {/* Header */}
             <div className="text-center mb-8">
               <div className="flex items-center justify-center mb-6">
-                <Heart className="h-16 w-16 text-medical-red animate-pulse-glow" />
+              <img src={logo} alt="Logo" className="h-16 w-16 rounded-full object-cover" />
                 <span className="text-5xl font-bold text-white ml-3">B-Donor</span>
               </div>
               <p className="text-xl text-slate-300 mb-4">Connecting Lives, Saving Lives</p>

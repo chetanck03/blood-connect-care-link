@@ -13,6 +13,8 @@ import PatientRegistration from "./components/PatientRegistration";
 import DonorRegistration from "./components/DonorRegistration";
 import Maps from "./components/Maps";
 import ContactUs from "./components/ContactUs";
+import PolicyPage from "./pages/PolicyPage"; // Import PolicyPage
+import DownloadCertificate from "./pages/DownloadCertificate"; // Import DownloadCertificate
 
 const queryClient = new QueryClient();
 
@@ -52,6 +54,8 @@ const AppContent = () => {
             <ContactUs onBack={() => {}} />
           </ProtectedRoute>
         } />
+        <Route path="/policy" element={<PolicyPage />} /> {/* Add route for PolicyPage */}
+        <Route path="/download-certificate" element={<DownloadCertificate />} /> {/* Add route for DownloadCertificate */}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

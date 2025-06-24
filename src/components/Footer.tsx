@@ -1,6 +1,7 @@
 
 import { getDayOfYear } from "date-fns";
 import { Heart, Phone, Mail, MapPin, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import logo from '../components/img/logo.png';
 
 const Footer = () => {
 
@@ -29,7 +30,7 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="lg:col-span-1">
             <div className="flex items-center mb-4">
-              <Heart className="h-8 w-8 text-medical-red animate-pulse" />
+              <img src={logo}  alt="B-Donor Logo" className="h-12 w-12 rounded-full object-cover" />
               <span className="text-2xl font-bold text-white ml-2">B-Donor</span>
             </div>
             <p className="text-slate-300 mb-4">

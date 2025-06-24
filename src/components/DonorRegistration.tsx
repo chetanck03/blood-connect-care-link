@@ -1,5 +1,6 @@
 
 import { useState } from 'react';
+import { Link } from 'react-router-dom'; // Import Link
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -184,7 +185,7 @@ const DonorRegistration = ({ onBack }: DonorRegistrationProps) => {
                   required
                 />
                 <Label htmlFor="consent" className="text-white">
-                  I agree to the no blood sale and purchase policy
+                  I agree to the <Link to="/policy" className="underline text-blue-600 hover:text-blue-500">no blood sale and purchase policy</Link>
                 </Label>
               </div>
 
